@@ -1,0 +1,155 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<div class="empty-space-50"></div>
+
+<form id="myForm" ngForm>
+  <div class="body-content">
+    <div class="container">
+      <div class="row">
+        <div class="text-center">
+          <br />
+        </div>
+      </div>
+      <div class="card bg-light center_div" style="width: 350px;">
+        <div class="card-body" id="">
+          <div class="container">
+            <div class="">
+              <div id="SearchByButtons" class="center">
+                <div class="custom-control-inline font-weight-bold">
+                  Search By:
+                </div>
+                <div class="col-2 custom-control custom-radio custom-control-inline">
+                  <input type="radio" [(ngModel)]="radioButton" (change)="clearUserBox()" value="user" name="radioUser" class="radio-color custom-control-input" id="SearchByUser"/>
+                  <label class="custom-control-label" for="SearchByUser">User</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" [(ngModel)]="radioButton" (change)="clearUserBox()" value="program" name="radioprogram" class="radio-color custom-control-input" id="SearchByProgram"/>
+                  <label class="custom-control-label" for="SearchByProgram">Program</label>
+                </div>
+                <p></p>
+                <div id="overlay" class="center_div" [(ngModel)]="overlay" value="overlay" *ngIf="overlay" style="display: block" name="overlay" ngDefaultControl >
+                  <mat-spinner [ngModel]="showSpinner" *ngIf="showSpinner" class="spinner_position" name="spinner"  ngDefaultControl></mat-spinner>
+                </div>
+              </div>
+              <div class="">
+                <input required [(ngModel)]="userID" type="text" name="userInput" id="User_ID" class="col-10 center_div form-control text-center" placeholder="{{this.placeHolder}}"  autofocus="autofocus">
+                <p></p>
+                <div>
+                  <select [(ngModel)]="select" name="select" class="col-10 center_div dropdown-menu-custom text-center" aria-required="true" id="country_list" aria-label="Default select example">
+<!--                    <option class=" dropdown-menu-custom " value="" disabled="disabled" hidden="hidden">Select your country</option>-->
+                    <option disabled="disabled" selected="selected" value="Select your country" hidden="hidden">Select your country</option>
+                    <option ng-required="true"  *ngFor="let option of countries">{{option.country}}</option>
+                  </select>
+                </div>
+                <p></p>
+                <button type="submit" class=" col-10 center_div btnColor btn btn-bg btn-block btn-primary justify-content-center" (click)="userClick()" id="search">Search</button>
+              </div>              &ensp;
+            </div>
+          </div>
+        </div>
+      </div>
+      <p></p>
+      <button  [ngModel]="validationErrorNoUser" *ngIf="validationErrorNoUser" ngDefaultControl class="center alert alert-danger col-4 center_div text-center" id="ValidationErrorNoUser" name="ValidationErrorNoUser">{{UserNA}}
+        <a target="_blank" [href]="mailto()">Jack Symes</a>.</button>
+      <button [ngModel]="validationError" *ngIf="validationError" ngDefaultControl class="center alert alert-danger col-4 center_div text-center" id="ValidationError" name="ValidationError" (click)="openXl(content)">{{RMSStr}}</button>
+      <p></p>
+      <div class="empty-space-20"></div>
+    </div>
+
+<!--      <button class="center alert alert-danger col-4 center_div text-center" id="tableTemplate" (click)="openXl(programTemp)">{{RMSStr}}</button>-->
+      <!--      program Table-->
+      <div [ngTemplateOutlet]="userTemp" *ngIf="userTable"></div>
+      <div [ngTemplateOutlet]="programTemp" *ngIf="programTable"></div>
+      <div class="row top-m-12" id="myDIV">
+        <p></p>
+        <p></p>
+      </div>
+  </div>
+</form>
+<router-outlet></router-outlet>
+<!--program Tamplate-->
+<ng-template  #programTemp>
+  <div class="container-xxl table-responsive">
+    <table class="table table-hover">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Description</th>
+        <th scope="col">Scope</th>
+        <th scope="col">Labor</th>
+        <th scope="col">Procurement</th>
+        <th scope="col">Travel</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let program of PROGRAM">
+        <td class="programTable">{{program.description | placeHolder:''}}</td>
+        <td class="programTable">{{program.scope | placeHolder:'Not Found'}}</td>
+        <td class="programTable">{{ program.labor | placeHolder:'Not Found'}}</td>
+        <td class="programTable">{{ program.procurement | placeHolder:'Not Found'}}</td>
+        <td class="programTable">{{ program.travel | placeHolder:'Not Found'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+<!--User Template-->
+<ng-template #userTemp>
+  <div class="container-xxl table-responsive"   >
+    <table class="table table-hover">
+      <thead class="thead-light">
+      <tr class="">
+        <th scope="col">Name</th>
+        <th scope="col">NTID</th>
+        <th scope="col">Domain Categorisation</th>
+        <th scope="col">Description</th>
+        <th scope="col">BA</th>
+        <th scope="col">Labor</th>
+        <th scope="col">Procurement</th>
+        <th scope="col">Travel</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of USERS">
+        <td>{{user.DISPLAYNAME | placeHolder:'Not Found'}}</td>
+        <td>{{user.ntid | placeHolder:'Not Found'}}</td>
+        <td>{{ user.domainCategorisation | placeHolder:'Not Found'}}</td>
+        <td>{{ user.description | placeHolder:'Not Found'}}</td>
+        <td>{{ user.ba | placeHolder:'Not Found'}}</td>
+        <td>{{ user.labor | placeHolder:'Not Found'}}</td>
+        <td>{{ user.procurement | placeHolder:'Not Found'}}</td>
+        <td>{{ user.travel | placeHolder:'Not Found'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+<ng-template #content let-modal>
+  <div class="container">
+    <h2>{{popupHeader}}</h2>
+    <table class="table table-responsive-lg table-hover">
+      <thead class="thead-light">
+      <tr>
+        <th>Description</th>
+        <th>Scope</th>
+        <th>Labor</th>
+        <th>procurement</th>
+        <th>Travel</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let popup of POPUP">
+      <td> {{popup.description | placeHolder:'Not Found'}}</td>
+      <td> {{popup.scope | placeHolder:'Not Found'}}</td>
+      <td> {{popup.labor | placeHolder:'Not Found'}}</td>
+      <td> {{popup.procurement | placeHolder:'Not Found'}}</td>
+      <td> {{popup.travel | placeHolder:'Not Found'}}</td>
+      </tbody>
+    </table>
+    </div>
+</ng-template>

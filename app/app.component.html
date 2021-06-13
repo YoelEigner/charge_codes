@@ -1,0 +1,21 @@
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<link href="styles.css">
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+  <img [src]="magnifying" width="30" height="30" alt="" />
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <div class="navbar-nav">
+        <a class="nav-link" href="charge-codes">Reset Form</a>
+        <a class="nav-link" href="mailto:yoel.eigner@lmco.com?cc=jack.j.symes@lmco.com&Subject=Charge Code">Help</a>
+        <div class="nav-item dropdown">
+          <div class="dropdown-menu" aria-labelledby="AdminMenuLink">
+          </div>
+        </div>
+      </div>
+    </div>
+    <img [src]="lmLogo" id="img_click" alt="" />
+  </div>
+
+</nav>
+<router-outlet routerLink="/charge-codes"></router-outlet>
+

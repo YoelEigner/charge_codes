@@ -1,0 +1,90 @@
+td{
+  text-align: center;
+}
+th{
+  text-align: center;
+}
+table.table-fit {
+  width: auto !important;
+  table-layout: auto !important;
+}
+table.table-fit thead th, table.table-fit tfoot th {
+  width: auto !important;
+}
+table.table-fit tbody td, table.table-fit tfoot td {
+  width: auto !important;
+}
+.programTable{
+  text-align: left;
+}
+
+.userTable{
+  text-align: center;
+}
+.btnColor{
+  background-image: linear-gradient(#6d94bf, #446E9B 50%, #3e648d);
+  /*background-repeat: no-repeat;*/
+  /*filter: none;*/
+}
+.radio-color{
+  background-image: linear-gradient(#6d94bf, #446E9B 50%, #3e648d);
+  /*background-repeat: no-repeat;*/
+  /*filter: none;*/
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #446E9B;
+}
+
+h2{
+  text-align: center;
+}
+/*
+.table .thead-light th {
+  color: #495057;
+  background-color: #e8edf3;
+  border-color: #dee2e6;
+}*/
+.empty-space-20{
+  padding-bottom:20px
+}
+.empty-space-50{
+  padding-bottom:50px
+}
+
+.center_table{
+  size: auto;
+}
+
+.transparent .mat-dialog-container {
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0.0);
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+.overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
