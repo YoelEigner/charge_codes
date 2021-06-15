@@ -26,26 +26,26 @@
                   Search By:
                 </div>
                 <div class="col-2 custom-control custom-radio custom-control-inline">
-                  <input type="radio" [(ngModel)]="radioButton" (change)="clearUserBox()" value="user" name="radioUser" class="radio-color custom-control-input" id="SearchByUser"/>
+                  <input type="radio" [(ngModel)]="gv.radioButton" (change)="clearUserBox.clearUserBox()" value="user" name="radioUser" class="radio-color custom-control-input" id="SearchByUser"/>
                   <label class="custom-control-label" for="SearchByUser">User</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
-                  <input type="radio" [(ngModel)]="radioButton" (change)="clearUserBox()" value="program" name="radioprogram" class="radio-color custom-control-input" id="SearchByProgram"/>
+                  <input type="radio" [(ngModel)]="gv.radioButton" (change)="clearUserBox.clearUserBox()" value="program" name="radioprogram" class="radio-color custom-control-input" id="SearchByProgram"/>
                   <label class="custom-control-label" for="SearchByProgram">Program</label>
                 </div>
                 <p></p>
-                <div id="overlay" class="center_div" [(ngModel)]="overlay" value="overlay" *ngIf="overlay" style="display: block" name="overlay" ngDefaultControl >
-                  <mat-spinner [ngModel]="showSpinner" *ngIf="showSpinner" class="spinner_position" name="spinner"  ngDefaultControl></mat-spinner>
+                <div id="overlay" class="center_div" [(ngModel)]="gv.overlay" value="overlay" *ngIf="gv.overlay" style="display: block" name="overlay" ngDefaultControl >
+                  <mat-spinner [ngModel]="gv.showSpinner" *ngIf="gv.showSpinner" class="spinner_position" name="spinner"  ngDefaultControl></mat-spinner>
                 </div>
               </div>
               <div class="">
-                <input required [(ngModel)]="userID" type="text" name="userInput" id="User_ID" class="col-10 center_div form-control text-center" placeholder="{{this.placeHolder}}"  autofocus="autofocus">
+                <input required [(ngModel)]="gv.userID" type="text" name="userInput" id="User_ID" class="col-10 center_div form-control text-center" placeholder="{{gv.placeHolder}}"  autofocus="autofocus">
                 <p></p>
                 <div>
-                  <select [(ngModel)]="select" name="select" class="col-10 center_div dropdown-menu-custom text-center" aria-required="true" id="country_list" aria-label="Default select example">
+                  <select [(ngModel)]="gv.select" name="select" class="col-10 center_div dropdown-menu-custom text-center" aria-required="true" id="country_list" aria-label="Default select example">
 <!--                    <option class=" dropdown-menu-custom " value="" disabled="disabled" hidden="hidden">Select your country</option>-->
                     <option disabled="disabled" selected="selected" value="Select your country" hidden="hidden">Select your country</option>
-                    <option ng-required="true"  *ngFor="let option of countries">{{option.country}}</option>
+                    <option ng-required="true"  *ngFor="let option of gv.countries">{{option.country}}</option>
                   </select>
                 </div>
                 <p></p>
@@ -56,17 +56,17 @@
         </div>
       </div>
       <p></p>
-      <button  [ngModel]="validationErrorNoUser" *ngIf="validationErrorNoUser" ngDefaultControl class="center alert alert-danger col-4 center_div text-center" id="ValidationErrorNoUser" name="ValidationErrorNoUser">{{UserNA}}
+      <button  [ngModel]="gv.validationErrorNoUser" *ngIf="gv.validationErrorNoUser" ngDefaultControl class="center alert alert-danger col-4 center_div text-center" id="ValidationErrorNoUser" name="ValidationErrorNoUser">{{gv.UserNA}}
         <a target="_blank" [href]="mailto()">Jack Symes</a>.</button>
-      <button [ngModel]="validationError" *ngIf="validationError" ngDefaultControl class="center alert alert-danger col-4 center_div text-center" id="ValidationError" name="ValidationError" (click)="openXl(content)">{{RMSStr}}</button>
+      <button [ngModel]="gv.validationError" *ngIf="gv.validationError" ngDefaultControl class="center alert alert-danger col-4 center_div text-center" id="ValidationError" name="ValidationError" (click)="openXl(content)">{{gv.RMSStr}}</button>
       <p></p>
       <div class="empty-space-20"></div>
     </div>
 
 <!--      <button class="center alert alert-danger col-4 center_div text-center" id="tableTemplate" (click)="openXl(programTemp)">{{RMSStr}}</button>-->
       <!--      program Table-->
-      <div [ngTemplateOutlet]="userTemp" *ngIf="userTable"></div>
-      <div [ngTemplateOutlet]="programTemp" *ngIf="programTable"></div>
+      <div [ngTemplateOutlet]="userTemp" *ngIf="gv.userTable"></div>
+      <div [ngTemplateOutlet]="programTemp" *ngIf="gv.programTable"></div>
       <div class="row top-m-12" id="myDIV">
         <p></p>
         <p></p>
@@ -88,7 +88,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let program of PROGRAM">
+      <tr *ngFor="let program of gv.PROGRAM">
         <td class="programTable">{{program.description | placeHolder:''}}</td>
         <td class="programTable">{{program.scope | placeHolder:'Not Found'}}</td>
         <td class="programTable">{{ program.labor | placeHolder:'Not Found'}}</td>
@@ -116,7 +116,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of USERS">
+      <tr *ngFor="let user of gv.USERS">
         <td>{{user.DISPLAYNAME | placeHolder:'Not Found'}}</td>
         <td>{{user.ntid | placeHolder:'Not Found'}}</td>
         <td>{{ user.domainCategorisation | placeHolder:'Not Found'}}</td>
@@ -132,7 +132,7 @@
 </ng-template>
 <ng-template #content let-modal>
   <div class="container">
-    <h2>{{popupHeader}}</h2>
+    <h2>{{gv.popupHeader}}</h2>
     <table class="table table-responsive-lg table-hover">
       <thead class="thead-light">
       <tr>
@@ -143,7 +143,7 @@
         <th>Travel</th>
       </tr>
       </thead>
-      <tbody *ngFor="let popup of POPUP">
+      <tbody *ngFor="let popup of gv.POPUP">
       <td> {{popup.description | placeHolder:'Not Found'}}</td>
       <td> {{popup.scope | placeHolder:'Not Found'}}</td>
       <td> {{popup.labor | placeHolder:'Not Found'}}</td>

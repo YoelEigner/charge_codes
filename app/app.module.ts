@@ -12,9 +12,8 @@ import {MatSortModule} from "@angular/material/sort";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
 import { MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {CountyListService} from "./services/county-list.service"
 import {PipeService} from "./services/pipe.service";
-import {ModalModule} from "ngx-bootstrap/modal";
+import {clearUserBoxService} from "./services/clearUserBox.service";
 
 
 const appRoutes: Routes = [
@@ -27,7 +26,8 @@ const appRoutes: Routes = [
     getDataComponent,
     PipeService
   ],
-    imports: [
+
+  imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
@@ -45,9 +45,9 @@ const appRoutes: Routes = [
         BrowserAnimationsModule
     ],
   exports:[
-
+    // global.countries
   ],
-  providers: [],
+  providers: [clearUserBoxService, getDataComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
