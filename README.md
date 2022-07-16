@@ -1,6 +1,5 @@
 # Charge Code Finder
 My very first [Angular CLI](https://github.com/angular/angular-cli) program with no prior experience.
-Looking over the code again, I see a lot of issues moaslty readability, but this is how you learn.
 
 ## Description
 Database search engine that I built in C# and ASP.NET and rewrote in Angular JavaScript.<br/>
